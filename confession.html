@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confession Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Confession Page Styles */
+        .confession-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .confession-container h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Celebration Page Styles */
+        .celebration-container {
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1512442022020-1b1c1c1c1c1c') no-repeat center center fixed; /* Heart background */
+            background-size: cover;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Overlay for better text visibility */
+        .celebration-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+        }
+
+        .celebration-container h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            position: relative; /* Position relative to overlay */
+            z-index: 1; /* Ensure text is above overlay */
+        }
+
+        .celebration-message {
+            display: none; /* Hidden by default */
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            font-size: 1.5em;
+            animation: pop 0.5s ease forwards, celebrate 1s ease forwards;
+            z-index: 1; /* Ensure message is above overlay */
+        }
+
+        @keyframes pop {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes celebrate {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+           
+            animation: confetti 5s infinite;
+            z-index: 0; /* Ensure confetti is below text */
+        }
+
+        @keyframes confetti {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Confession Page -->
+    <div class=" confession-container" id="confessionPage">
+        <h1>Will You Go on a Date with Me?</h1>
+        <div class="buttons">
+            <button id="yesButton">Yes</button>
+            <button id="noButton">No</button>
+        </div>
+    </div>
+
+    <!-- Celebration Page -->
+    <div class="celebration-container" id="celebrationPage">
+        <div class="celebration-overlay"></div> <!-- Overlay for better visibility -->
+        <h1>Yay! I'm so happy!</h1>
+        <div class="confetti"></div>
+        <div class="celebration-message" id="celebrationMessage">Thank you for saying Yes! 🎉</div>
+    </div>
+
+    <script>
+        document.getElementById('yesButton').addEventListener('click', function() {
+            document.getElementById('confessionPage').style.display = 'none';
+            document.getElementById('celebrationPage').style.display = 'flex';
+            setTimeout(function() {
+                document.getElementById('celebrationMessage').style.display = 'block';
+            }, 500); // Delay to show the message after the page transition
+        });
+
+        document.getElementById('noButton').addEventListener('click', function() {
+            alert("You don't have any other option, just select Yes!");
+            // Stay on the same page
+        });
+    </script>
+</body>
+</html>
